@@ -1,6 +1,7 @@
 class Api::ActorsController < ApplicationController
 def one_actor_method
-  @actor = Actor.find_by(id:2)
+
+  @actor = Actor.find_by(id: params[:id])
   render 'one_actor.json.jbuilder'
 end
 
