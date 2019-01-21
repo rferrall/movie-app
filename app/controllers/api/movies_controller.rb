@@ -1,15 +1,39 @@
 class Api::MoviesController < ApplicationController
 
-def all_movie_method
-  @movies = Movie.order(:year)
+def index
+  @movies = Movie.all
   render 'all_movie.json.jbuilder'
 end
 
-def first_movie_method
-  @first_movie = Movie.first
-  render 'first_movie.json.jbuilder'
-  
-
+def show
+  @movie = Movie.find(params[:id])
+  render 'show.json.jbuilder'
 end
 
+def create
+  @movie = Movie.new(
+    title: params["title"],
+    year: params["year"],
+    plot: params["plot"]
+    )
+  @movie.save
+  render 'show.json.jbuilder'
+end
+
+def update
+  @movie = Movie.find(params[:id])
+  @movie.title = params["title"] || @movie.title
+  @movie.year = params["year"] || @movie.year
+  @movie.plot= params["plot"] || @movie.plot
+
+   @movie.save
+   render 'show.json.jbuilder'
+end
+
+def destroy
+  @movie = Movie.find(params[:id])
+  @movie.destroy
+
+  render json: {message: "This movie has been deleted."}
+end
 end

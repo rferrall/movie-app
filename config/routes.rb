@@ -2,11 +2,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 namespace :api do
-  get "/one_actor_url" => "actors#one_actor_method"
-  get "/one_actor_url/:id" => "actors#one_actor_method"
-  get "/all_movies_url" => "movies#all_movie_method"
-  get "first_movie_url" => "movies#first_movie_method"
-  post "/select_actor" => "actors#one_actor_method"
+  get "/actors" => "actors#index"
+  get "/actors/:id" => "actors#show"
+  post "/actors" => "actors#create"
+  patch "/actors/:id" => "actors#update"
+  delete "/actors/:id" => "actors#destroy"
+
+  get "/movies" => "movies#index"
+  get "/movies/:id" => "movies#show"
+  post "/movies" => "movies#create"
+  patch "/movies/:id" => "movies#update"
+  delete "/movies/:id" => "movies#destroy"
 end
 
 end
