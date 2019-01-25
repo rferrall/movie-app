@@ -18,8 +18,11 @@ def create
       age: params["age"],
       gender: params["gender"]
     )
-  @actor.save
+  if @actor.save
   render 'one_actor.json.jbuilder'
+  else
+    render json:{errors: @actor.errors.full_messages}, status: :unprocessable_entity
+  end
 end
 
 def update
@@ -31,8 +34,11 @@ def update
   @actor.gender = params["gender"] || @actor.gender
   @actor.age = params["age"] || @actor.age
 
-  @actor.save
-  render 'one_actor.json.jbuilder'  
+  if @actor.save
+  render 'one_actor.json.jbuilder'
+  else
+    render json:{errors: @actor.errors.full_messages}, status: :unprocessable_entity
+  end 
 end
 
 def destroy

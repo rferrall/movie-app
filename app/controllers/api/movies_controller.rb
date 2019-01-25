@@ -18,8 +18,11 @@ def create
     director: params["director"],
     english: params["english"]
     )
-  @movie.save
+  if @movie.save
   render 'show.json.jbuilder'
+  else
+    render json:{errors: @movie.errors.full_messages}, status: :unprocessable_entity
+  end
 end
 
 def update
@@ -30,8 +33,11 @@ def update
   @movie.director = params["director"] || @movie.director
   @movie.english = params["english"] || @movie.english
 
-   @movie.save
+   if @movie.save
    render 'show.json.jbuilder'
+   else
+     render json:{errors: @movie.errors.full_messages}, status: :unprocessable_entity
+   end
 end
 
 def destroy
