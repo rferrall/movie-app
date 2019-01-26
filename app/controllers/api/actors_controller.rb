@@ -6,7 +6,8 @@ def show
 end
 
 def index
-  @actors = Actor.all
+  @actors = Actor.all.order(age: :desc)
+
   render 'index.json.jbuilder'
 end
 
