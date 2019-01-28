@@ -5,4 +5,6 @@ class Movie < ApplicationRecord
   validates :director, length: {minimum: 2}
   validates :year, length: { is: 4}
 
+  has_many :actors
+
 end

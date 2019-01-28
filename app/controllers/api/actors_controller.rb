@@ -17,7 +17,8 @@ def create
       last_name: params["last_name"],
       known_for: params["known_for"],
       age: params["age"],
-      gender: params["gender"]
+      gender: params["gender"],
+      movie_id: params["movie_id"]
     )
   if @actor.save
   render 'one_actor.json.jbuilder'
@@ -34,6 +35,7 @@ def update
   @actor.known_for = params["known_for"] || @actor.known_for
   @actor.gender = params["gender"] || @actor.gender
   @actor.age = params["age"] || @actor.age
+  @actor.movie_id = params ["movie_id"] || @actor.movie_id
 
   if @actor.save
   render 'one_actor.json.jbuilder'
