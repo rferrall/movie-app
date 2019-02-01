@@ -1,5 +1,7 @@
 class Api::ActorsController < ApplicationController
 
+before_action :authenticate_admin, except: [:index, :show]
+
 def show
   @actor = Actor.find_by(id: params[:id])
   render 'one_actor.json.jbuilder'
@@ -35,7 +37,7 @@ def update
   @actor.known_for = params["known_for"] || @actor.known_for
   @actor.gender = params["gender"] || @actor.gender
   @actor.age = params["age"] || @actor.age
-  @actor.movie_id = params ["movie_id"] || @actor.movie_id
+  @actor.movie_id = params["movie_id"] || @actor.movie_id
 
   if @actor.save
   render 'one_actor.json.jbuilder'
