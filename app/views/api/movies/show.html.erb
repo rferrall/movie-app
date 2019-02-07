@@ -1,0 +1,35 @@
+<h3> My Favorite Movies</h3>
+<h1><%= @movie.title %> </h1>
+<h2>Directed by: <%= @movie.director%></h2>
+<h5> Released in <%= @movie.year %></h5>
+<h4>Tells the story of <%= @movie.plot %></h4>
+
+
+
+
+
+<p> If you'd like to add a movie, fill out the form below:</p>
+<form action="/movies" method="post">
+  <div>
+    Title: <input type="text" name="name">
+  </div>
+  <div>
+    Year: <input type="text" name="year">
+  </div>
+  <div>
+    Plot: <input type="text" name="plot">
+  </div>
+  <div>
+    Director: <input type="text" name="director">
+  </div>
+  <div> In English? Yes:
+  <input type="radio" name="english"></div>
+  
+  
+  
+  
+  <input type="submit" name="Add a Movie">
+
+</form>
+
+<a href="/movies/#{movie.genre_names}"> Genres</a>
